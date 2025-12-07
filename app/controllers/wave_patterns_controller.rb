@@ -1,0 +1,2 @@
+class WavePatternsController < ApplicationController
+end

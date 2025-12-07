@@ -7,4 +7,17 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # Auth
+  post "/signup", to: "users#create"
+  post "/login",  to: "sessions#create"
+  get  "/me",     to: "users#show"  # later: use auth to return current_user
+  
+  # Resources
+  resources :observations
+  resources :star_patterns, only: [:index, :show]
+  resources :wave_patterns, only: [:index, :show]
+  resources :bird_migrations, only: [:index, :show]
+
 end
+
