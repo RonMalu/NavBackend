@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  direction: MyString
+  rising_point: MyString
+  description: MyText
+
+two:
+  name: MyString
+  direction: MyString
+  rising_point: MyString
+  description: MyText

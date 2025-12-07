@@ -1,0 +1,2 @@
+class StarPattern < ApplicationRecord
+end
