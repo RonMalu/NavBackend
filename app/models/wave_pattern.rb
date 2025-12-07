@@ -1,0 +1,2 @@
+class WavePattern < ApplicationRecord
+end

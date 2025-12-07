@@ -1,0 +1,2 @@
+class BirdMigration < ApplicationRecord
+end

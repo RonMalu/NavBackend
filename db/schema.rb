@@ -10,9 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_07_091058) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_07_093353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "bird_migrations", force: :cascade do |t|
+    t.string "bird_name"
+    t.string "movement_direction"
+    t.string "indicator"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "observations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "star_pattern_id", null: false
+    t.bigint "wave_pattern_id", null: false
+    t.bigint "bird_migration_id", null: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bird_migration_id"], name: "index_observations_on_bird_migration_id"
+    t.index ["star_pattern_id"], name: "index_observations_on_star_pattern_id"
+    t.index ["user_id"], name: "index_observations_on_user_id"
+    t.index ["wave_pattern_id"], name: "index_observations_on_wave_pattern_id"
+  end
+
+  create_table "star_patterns", force: :cascade do |t|
+    t.string "name"
+    t.string "direction"
+    t.string "rising_point"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -21,4 +53,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_07_091058) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "wave_patterns", force: :cascade do |t|
+    t.string "name"
+    t.string "direction"
+    t.string "consistency"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "observations", "bird_migrations"
+  add_foreign_key "observations", "star_patterns"
+  add_foreign_key "observations", "users"
+  add_foreign_key "observations", "wave_patterns"
 end
