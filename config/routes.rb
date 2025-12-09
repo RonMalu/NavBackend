@@ -9,15 +9,23 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   # Auth
-  post "/signup", to: "users#create"
-  post "/login",  to: "sessions#create"
-  get  "/me",     to: "users#show"  # later: use auth to return current_user
+  post "/signup" => "users#create"
+  post "/login"  => "sessions#create"
+  get  "/me"     => "users#show"  # later: use auth to return current_user
   
   # Resources
   resources :observations
   resources :star_patterns, only: [:index, :show]
   resources :wave_patterns, only: [:index, :show]
   resources :bird_migrations, only: [:index, :show]
+  
+  # get "/wave_patterns" => "wave_patterns#index"
+  # get "/wave_pattersn/:id" => "wave_patterns#show"
+
+  # get "/bird_migrations" => "bird_migrations#index"
+  # get "/bird_migrations/:id" => "bird_migrations#show"
+
+
 
 end
 
