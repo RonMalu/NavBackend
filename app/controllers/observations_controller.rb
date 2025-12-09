@@ -1,4 +1,6 @@
 class ObservationsController < ApplicationController
+  before_action :authorize
+
   def index
     observations = Observation.includes(:user, :star_pattern, :wave_pattern, :bird_migration).all
     render json: observations.to_json(include: [:user, :star_pattern, :wave_pattern, :bird_migration])
