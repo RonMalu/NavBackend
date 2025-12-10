@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   delete "/observations/:id"      => "observations#destroy"
   
   # Resources
-  # resources :observations
-  # resources :star_patterns, only: [:index, :show]
-  # resources :wave_patterns, only: [:index, :show]
-  # resources :bird_migrations, only: [:index, :show]
+  resources :observations
+  resources :star_patterns, only: [:index, :show]
+  resources :wave_patterns, only: [:index, :show]
+  resources :bird_migrations, only: [:index, :show]
   
   # get "/wave_patterns" => "wave_patterns#index"
   # get "/wave_pattersn/:id" => "wave_patterns#show"

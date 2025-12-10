@@ -2,7 +2,7 @@ class ObservationsController < ApplicationController
   before_action :authorize
 
   def index
-    observations = Observation.includes(:user, :star_pattern, :wave_pattern, :bird_migration).all
+    observations = current_user.observations.includes(:user, :star_pattern, :wave_pattern, :bird_migration).all
     render json: observations.to_json(include: [:user, :star_pattern, :wave_pattern, :bird_migration])
   end
 
@@ -18,6 +18,24 @@ class ObservationsController < ApplicationController
     else
       render json: { errors: observation.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+
+  def update
+    observation = Observation.find(params[:id])
+    if observation.update(observation_params)
+      render json: observation
+    else
+      render json: { errors: observation.errors.full_messages }, status: :unprocessable_entity
+    end
+
+  end
+
+  def destroy
+    observation = Observation.find(params[:id])
+    observation.destroy
+    head :no_content
+
   end
 
   private
